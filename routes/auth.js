@@ -50,7 +50,21 @@ router.post('/createuser',[
           }
         const token=jwt.sign(data,mysign);
         success=true;
-        res.json({success,token,"Status":"Yay! Welcome to CodeChat"})
+        // res.json({success,token,"Status":"Yay! Welcome to CodeChat"})
+         if (user) {
+            res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            username:user.username,
+            isAdmin: user.isAdmin,
+            dp: user.dp,
+            token,
+            });
+        } else {
+            res.status(400);
+            throw new Error("User not found");
+        }
 
     }
     catch(error){
@@ -87,7 +101,16 @@ router.post('/login',[
             }
             const token=jwt.sign(data,mysign);
             success=true;
-            res.json({success,token,"Status":"Welcome Back "+user.name.toUpperCase()})
+            // res.json({success,token,"Status":"Welcome Back "+user.name.toUpperCase()})
+                res.json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                username:user.username,
+                isAdmin: user.isAdmin,
+                dp: user.dp,
+                token
+                });
         }
         catch(error){
             console.log(error);

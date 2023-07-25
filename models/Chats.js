@@ -13,16 +13,16 @@ const ChatSchema = new Schema({
     users:[
         {
         type:Schema.Types.ObjectId,
-        ref:"Users"
+        ref:"users"
     },
     ],
     latestMessage:{
          type:Schema.Types.ObjectId,
-        ref:"Messages"
+        ref:"message"
     },
     groupAdmin:{
         type:Schema.Types.ObjectId,
-        ref:"Users"
+        ref:"users"
     }
 },{
     timestamps:true,
