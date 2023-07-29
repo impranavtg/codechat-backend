@@ -35,7 +35,7 @@ const server=app.listen(port, () => {
   const io=require("socket.io")(server,{
     pingTimeout:60000,
     cors:{
-        origin:"https://codechat-frontend-bgcvnqjzd-impranavtg.vercel.app/",
+        origin:"https://codechat-frontend.vercel.app/",
     }
   });
 
