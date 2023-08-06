@@ -7,10 +7,9 @@ const messageRoutes=require("./routes/messageRoutes");
 const app = express()
 const dotenv=require("dotenv")
 dotenv.config({path:'./config.env'})
-const port = process.env.PORT || 7000;
+const port = process.env.PORT 
 const { notFound, errorHandler } = require("./middleware/error");
-const http = require("http");
-const httpserver = http.createServer(app);
+
 
 
 connectToMongo();
@@ -30,7 +29,7 @@ app.use("/api/message",messageRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const server=httpserver.listen(port, () => {
+const server=app.listen(port, () => {
     console.log(`CodeChat is listening on port ${port}`)
   })
 
@@ -50,7 +49,7 @@ const server=httpserver.listen(port, () => {
 
   socket.on("join chat", (room) => {
     socket.join(room);
-    console.log("User Joined Room: " + room);
+    // console.log("User Joined Room: " + room);
   });
   socket.on("typing", (room) => socket.in(room).emit("typing"));
   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
